@@ -4,7 +4,7 @@ A simple Cars app shows available cars on map and list with modern Android tech-
 
 
 ## Download
-Go to the [Download Link](https://drive.google.com/file/d/1lnfoXFfFoLOEkL_aTIGsSchizVPPJkZh/view?usp=sharing) to download the latest APK.
+Go to the [Download Link](https://drive.google.com/file/d/1F9n12t3PJDWuy4H_hSF2KQmxCUsP3xBr/view?usp=sharing) to download the latest APK.
 
 ## Screenshots
 <p align="center">
