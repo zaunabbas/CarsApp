@@ -2,4 +2,9 @@
     <string name="app_name">CarsApp</string>
     <string name="error_no_data">No Data</string>
     <string name="loading">Loading…</string>
+    <string name="cars_list">Cars List</string>
+    <string name="cars_count">%s Cars!</string>
+    <string name="icon">icon</string>
+    <string name="car_details_format">%s %s - %s</string>
+    <string name="map">Map</string>
 </resources>

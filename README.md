@@ -1,6 +1,6 @@
-<h1 align="center">Movies App</h1>
+<h1 align="center">Cars App</h1>
  
-A simple Movie app using [TMDB API](https://www.themoviedb.org) with modern Android tech-stacks and MVVM architecture.Fetching data from the network and the data via repository pattern.
+A simple Cars app shows available cars on map and list with modern Android tech-stacks and MVVM architecture. Fetching data from the network and the data via repository pattern.
 
 
 ## Download
@@ -8,8 +8,11 @@ Go to the [Download Link](https://drive.google.com/file/d/1lnfoXFfFoLOEkL_aTIGsS
 
 ## Screenshots
 <p align="center">
-<img src="/preview/image1.png" width="32%"/>
-<img src="/preview/image2.png" width="32%"/>
+<img src="/preview/preview.png" width="32%"/>
+<img src="/preview/preview1.png" width="32%"/>
+<img src="/preview/preview2.png" width="32%"/>
+<img src="/preview/preview3.png" width="32%"/>
+<img src="/preview/preview4.png" width="32%"/>
 </p>
 
 ## Tech stack & Open-source libraries

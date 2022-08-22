@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clCarInfoView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_10sdp"
+    android:visibility="gone"
+    app:cardCornerRadius="@dimen/_5sdp"
+    app:cardUseCompatPadding="true"
+    tools:visibility="visible">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <ImageView
+            android:id="@+id/ivCar"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/icon"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvOwnerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="textEnd"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivCar"
+            app:layout_constraintTop_toTopOf="@id/ivCar"
+            tools:text="BMW MINI" />
+
+        <TextView
+            android:id="@+id/tvLp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:maxLines="2"
+            android:textAlignment="textEnd"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tvOwnerName"
+            app:layout_constraintStart_toStartOf="@id/tvOwnerName"
+            app:layout_constraintTop_toBottomOf="@id/tvOwnerName"
+            tools:text="M-VO0259" />
+
+        <TextView
+            android:id="@+id/tvCarDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:textAlignment="textEnd"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintEnd_toEndOf="@id/tvOwnerName"
+            app:layout_constraintStart_toStartOf="@id/tvOwnerName"
+            app:layout_constraintTop_toBottomOf="@id/tvLp"
+            tools:text="BMW MINI - midnight_black" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
