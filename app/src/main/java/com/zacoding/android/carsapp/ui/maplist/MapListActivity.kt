@@ -58,22 +58,15 @@ class MapListActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     private fun initUI() {
-        setupEventListener()
+        setupUiEventListeners()
         setupBottomSheetBehavior()
         initAdapter()
     }
 
-    private fun setupEventListener() {
+    private fun setupUiEventListeners() {
         binding.bottomSheetView.btnShowMap.setOnClickListener {
             collapseBottomSheet()
         }
-    }
-
-    private fun setupMap() {
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
     }
 
     private fun setupBottomSheetBehavior() {
@@ -117,6 +110,12 @@ class MapListActivity : AppCompatActivity(), OnMapReadyCallback {
         //
     }
 
+    private fun setupMap() {
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
 
     private fun observeState() {
 

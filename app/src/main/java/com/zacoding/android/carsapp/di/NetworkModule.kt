@@ -36,7 +36,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideSearchService(retrofit: Retrofit): Api {
+    fun provideApiService(retrofit: Retrofit): Api {
         return retrofit.create(Api::class.java)
     }
 }
