@@ -8,6 +8,7 @@ import com.zacoding.android.carsapp.domain.CarsRepository
 import com.zacoding.android.carsapp.util.toCarsData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,9 +20,15 @@ class MapListViewModel @Inject constructor(
 
     private val filterByCarGroup: MutableStateFlow<String?> = MutableStateFlow(null)
     private val allCarsList: MutableStateFlow<ArrayList<CarsData>> = MutableStateFlow(arrayListOf())
-    val filteredCarsList: MutableStateFlow<List<CarsData>> = MutableStateFlow(arrayListOf())
-    val carsGroupFiltersList: MutableStateFlow<List<String>> = MutableStateFlow(arrayListOf())
-    val isLoading = MutableStateFlow(false)
+
+    private val _filteredCarsList: MutableStateFlow<List<CarsData>> = MutableStateFlow(arrayListOf())
+    val filteredCarsList = _filteredCarsList.asStateFlow()
+
+    private val _carsGroupFiltersList: MutableStateFlow<List<String>> = MutableStateFlow(arrayListOf())
+    val carsGroupFiltersList = _carsGroupFiltersList.asStateFlow()
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading = _isLoading.asStateFlow()
 
     init {
         getAllCars()
@@ -31,10 +38,10 @@ class MapListViewModel @Inject constructor(
 
         viewModelScope.launch {
             carsRepository.fetchCars(
-                onStart = { isLoading.value = true },
-                onCompletion = { isLoading.value = false },
+                onStart = { _isLoading.value = true },
+                onCompletion = { _isLoading.value = false },
                 onError = {
-                    isLoading.value = false
+                    _isLoading.value = false
                     Log.d("Error", it)
                 }
             ).collectLatest {
@@ -59,7 +66,7 @@ class MapListViewModel @Inject constructor(
     }
 
     private fun filterCarsByGroup() {
-        filteredCarsList.value =
+        _filteredCarsList.value =
             if (filterByCarGroup.value == null)
                 allCarsList.value
             else
@@ -67,7 +74,7 @@ class MapListViewModel @Inject constructor(
     }
 
     private fun setCarsGroupTagsList() {
-        carsGroupFiltersList.value = allCarsList.value.groupBy { it.group }.keys.toList()
+        _carsGroupFiltersList.value = allCarsList.value.groupBy { it.group }.keys.toList()
     }
 
     fun updateFilter(filterValue: String?) {

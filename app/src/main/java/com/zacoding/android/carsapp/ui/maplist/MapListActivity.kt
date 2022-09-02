@@ -118,8 +118,7 @@ class MapListActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun observeState() {
-
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             mapListViewModel.isLoading.collect { loading ->
                 binding.progress.isVisible = loading
             }
@@ -128,13 +127,13 @@ class MapListActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun observeData() {
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             mapListViewModel.carsGroupFiltersList.collectLatest {
                 showFilterTags(it)
             }
         }
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             mapListViewModel.filteredCarsList.collectLatest {
                 showMapAndListData(it)
             }
