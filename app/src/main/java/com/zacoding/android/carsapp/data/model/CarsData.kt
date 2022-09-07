@@ -1,4 +1,4 @@
-package com.zacoding.android.carsapp.data
+package com.zacoding.android.carsapp.data.model
 
 data class CarsData(
     val id: String,

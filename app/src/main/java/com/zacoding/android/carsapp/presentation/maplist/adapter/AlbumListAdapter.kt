@@ -1,11 +1,11 @@
-package com.zacoding.android.carsapp.ui.maplist.adapter
+package com.zacoding.android.carsapp.presentation.maplist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.zacoding.android.carsapp.data.CarsData
+import com.zacoding.android.carsapp.data.model.CarsData
 import com.zacoding.android.carsapp.databinding.ViewholderCarsItemBinding
-import com.zacoding.android.carsapp.ui.maplist.viewholder.CarsViewHolder
+import com.zacoding.android.carsapp.presentation.maplist.viewholder.CarsViewHolder
 
 class AlbumListAdapter(var carsDataList: ArrayList<CarsData>) :
     ListAdapter<CarsData, CarsViewHolder>(CarsListComparator()) {

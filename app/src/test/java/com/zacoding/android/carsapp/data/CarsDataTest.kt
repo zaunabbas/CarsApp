@@ -1,6 +1,6 @@
 package com.zacoding.android.carsapp.data
 
-import com.zacoding.android.carsapp.data.remote.CarsResponse
+import com.zacoding.android.carsapp.data.remote.responses.CarsResponse
 import com.zacoding.android.carsapp.util.toCarsData
 import org.junit.Assert.assertEquals
 import org.junit.Before

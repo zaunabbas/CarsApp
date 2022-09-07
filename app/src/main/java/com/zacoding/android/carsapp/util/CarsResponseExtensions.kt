@@ -1,7 +1,7 @@
 package com.zacoding.android.carsapp.util
 
-import com.zacoding.android.carsapp.data.CarsData
-import com.zacoding.android.carsapp.data.remote.CarsResponse
+import com.zacoding.android.carsapp.data.model.CarsData
+import com.zacoding.android.carsapp.data.remote.responses.CarsResponse
 
 
 fun CarsResponse.toCarsData() = CarsData(

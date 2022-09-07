@@ -1,4 +1,4 @@
-package com.zacoding.android.carsapp.data.remote
+package com.zacoding.android.carsapp.data.remote.responses
 
 data class CarsResponse(
     val id: String,

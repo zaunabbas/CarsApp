@@ -1,12 +1,14 @@
-package com.zacoding.android.carsapp.ui.maplist
+package com.zacoding.android.carsapp.presentation.maplist
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.activity.viewModels
+import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -20,20 +22,28 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import com.zacoding.android.carsapp.R
-import com.zacoding.android.carsapp.data.CarsData
-import com.zacoding.android.carsapp.databinding.ActivityMapListBinding
-import com.zacoding.android.carsapp.ui.maplist.adapter.AlbumListAdapter
-import com.zacoding.android.carsapp.ui.maplist.adapter.OnItemClickListener
-import com.zacoding.android.carsapp.util.makeStatusBarTransparent
+import com.zacoding.android.carsapp.data.model.CarsData
+import com.zacoding.android.carsapp.databinding.FragmentMapListBinding
+import com.zacoding.android.carsapp.presentation.base.ContentState
+import com.zacoding.android.carsapp.presentation.base.EmptyState
+import com.zacoding.android.carsapp.presentation.base.ErrorState
+import com.zacoding.android.carsapp.presentation.base.LoadingState
+import com.zacoding.android.carsapp.presentation.maplist.adapter.AlbumListAdapter
+import com.zacoding.android.carsapp.presentation.maplist.adapter.OnItemClickListener
+import com.zacoding.android.carsapp.util.gone
+import com.zacoding.android.carsapp.util.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class MapListActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapListFragment : Fragment(), OnMapReadyCallback {
 
-    private lateinit var binding: ActivityMapListBinding
+    private var _binding: FragmentMapListBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     @VisibleForTesting
     internal val mapListViewModel: MapListViewModel by viewModels()
@@ -44,18 +54,28 @@ class MapListActivity : AppCompatActivity(), OnMapReadyCallback {
     private var bsBehavior: BottomSheetBehavior<*>? = null
     private lateinit var mAdapter: AlbumListAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        makeStatusBarTransparent()
-        binding = ActivityMapListBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMapListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initUI()
         setupMap()
         observeState()
         observeData()
     }
-
 
     private fun initUI() {
         setupUiEventListeners()
@@ -112,15 +132,38 @@ class MapListActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun setupMap() {
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
+        val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
     private fun observeState() {
         lifecycleScope.launchWhenStarted {
-            mapListViewModel.isLoading.collect { loading ->
-                binding.progress.isVisible = loading
+            mapListViewModel.uiState.collect { uiState ->
+                when (uiState) {
+                    is LoadingState -> {
+                        binding.progress.show()
+                        binding.hlsGroupFilters.gone()
+                        binding.carInfoView.root.gone()
+                    }
+
+                    is ContentState -> {
+                        binding.progress.gone()
+                        binding.map.show()
+                        binding.hlsGroupFilters.show()
+                    }
+
+                    is EmptyState -> {
+                        binding.progress.gone()
+                        binding.hlsGroupFilters.gone()
+                    }
+
+                    is ErrorState -> {
+                        binding.progress.gone()
+                        binding.hlsGroupFilters.gone()
+                    }
+
+                }
             }
         }
     }

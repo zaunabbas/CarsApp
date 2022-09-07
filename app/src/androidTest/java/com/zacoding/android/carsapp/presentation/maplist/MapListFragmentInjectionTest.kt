@@ -1,4 +1,4 @@
-package com.zacoding.android.carsapp.ui.maplist
+package com.zacoding.android.carsapp.presentation.maplist
 
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
@@ -12,14 +12,14 @@ import org.junit.runner.RunWith
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
-class MapListActivityInjectionTest {
+class MapListFragmentInjectionTest {
 
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
     @Test
     fun verifyInjection() {
-        ActivityScenario.launch(MapListActivity::class.java).use {
+        ActivityScenario.launch(MapListFragment::class.java).use {
             it.moveToState(Lifecycle.State.CREATED)
             it.onActivity { activity ->
                 assertThat(activity.mapListViewModel).isNotNull()

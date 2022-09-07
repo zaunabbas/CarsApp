@@ -1,11 +1,11 @@
-package com.zacoding.android.carsapp.ui.maplist.viewholder
+package com.zacoding.android.carsapp.presentation.maplist.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.zacoding.android.carsapp.R
-import com.zacoding.android.carsapp.data.CarsData
+import com.zacoding.android.carsapp.data.model.CarsData
 import com.zacoding.android.carsapp.databinding.ViewholderCarsItemBinding
-import com.zacoding.android.carsapp.ui.maplist.adapter.OnItemClickListener
+import com.zacoding.android.carsapp.presentation.maplist.adapter.OnItemClickListener
 
 class CarsViewHolder(private val binding: ViewholderCarsItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
