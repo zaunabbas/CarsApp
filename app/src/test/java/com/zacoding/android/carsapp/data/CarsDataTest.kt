@@ -29,7 +29,7 @@ class CarsDataTest {
                 48.134557,
                 11.576921,
                 "REGULAR",
-                "https://cdn.sixt.io/codingtask/images/mini.png",
+                "",
             ),
             CarsResponse(
                 "WMWSW31030T222519",
@@ -47,7 +47,7 @@ class CarsDataTest {
                 48.134558,
                 11.576922,
                 "REGULAR",
-                "https://cdn.sixt.io/codingtask/images/mini.png",
+                "",
             )
         )
 
