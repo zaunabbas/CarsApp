@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface Api {
 
-    @GET("4ae5b693-cbac-457b-bfe8-6bdfa5500177")
+    @GET("cars")
     suspend fun fetchCars(
     ): List<CarsResponse>
 }
